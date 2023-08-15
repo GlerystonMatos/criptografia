@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{589C26D1-E5B5-43BD-BBF5-0284AA34FF6E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Criptografia.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Criptografia">
+        <MSBuild Projects="Criptografia.dproj"/>
+    </Target>
+    <Target Name="Criptografia:Clean">
+        <MSBuild Projects="Criptografia.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Criptografia:Make">
+        <MSBuild Projects="Criptografia.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Criptografia"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Criptografia:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Criptografia:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
