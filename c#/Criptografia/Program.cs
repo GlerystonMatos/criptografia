@@ -7,14 +7,22 @@ namespace Criptografia
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
             Console.Write("HMAC SHA1 Hex: ");
             Console.WriteLine(HMACSHA1HashValueHexStr("8dc115f4e2b640f6a2bc4046fdc5c635", "gleryston-matos"));
             Console.Write("HMAC SHA256 Hex: ");
             Console.WriteLine(HMACSHA256HashValueHexStr("8dc115f4e2b640f6a2bc4046fdc5c635", "gleryston-matos"));
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
             Console.Write("HMAC SHA1 Base64: ");
             Console.WriteLine(HMACSHA1HashValueBase64("8dc115f4e2b640f6a2bc4046fdc5c635", "gleryston-matos"));
             Console.Write("HMAC SHA256 Base64: ");
             Console.WriteLine(HMACSHA256HashValueBase64("8dc115f4e2b640f6a2bc4046fdc5c635", "gleryston-matos"));
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
+            Console.Write("MD5 01: ");
+            Console.WriteLine(MD5HashValue("gleryston-matos"));
+            Console.Write("MD5 02: ");
+            Console.WriteLine(MD5HashValue("gleryston-matos"));
+            Console.WriteLine("--------------------------------------------------------------------------------------------------");
         }
 
         private static byte[] BytesOf(string value)
@@ -84,6 +92,16 @@ namespace Criptografia
                 byte[] hashValue = hash.ComputeHash(valueBytes);
                 return Convert.ToBase64String(hashValue);
             }
+        }
+
+        private static string MD5HashValue(string value)
+        {
+            MD5 md5 = MD5.Create();
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(value);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            return Convert.ToHexString(hashBytes);
         }
     }
 }

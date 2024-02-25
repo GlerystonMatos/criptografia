@@ -1,4 +1,5 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{0681927b-322c-4cc6-b8b0-08ac4b628305}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,5 +32,6 @@
     </DelphiCompile>
     <DCCReference Include="IndyHMACSHA1.pas" />
     <DCCReference Include="IndyHMACSHA256.pas" />
+    <DCCReference Include="IndyMD5.pas" />
   </ItemGroup>
 </Project>
