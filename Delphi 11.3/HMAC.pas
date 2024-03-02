@@ -1,4 +1,4 @@
-unit IndyHMAC;
+unit HMAC;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   IdHMAC, IdGlobal, System.SysUtils, IdSSLOpenSSL, IdCoderMIME;
 
 type
-  TIndyHMAC<T: TIdHMAC, constructor> = class
+  THMAC<T: TIdHMAC, constructor> = class
   private
     class function IdBytesOf(aValue: string): TIdBytes;
     class function HashValue(aKey, aValue: string): TIdBytes;
@@ -17,31 +17,31 @@ type
 
 implementation
 
-{ TIndyHMAC<T> }
+{ THMAC<T> }
 
-class function TIndyHMAC<T>.IdBytesOf(aValue: string): TIdBytes;
+class function THMAC<T>.IdBytesOf(aValue: string): TIdBytes;
 begin
   aValue := StringReplace(aValue, '\n', '#$A', [rfReplaceAll, rfIgnoreCase]);
   Result := ToBytes(aValue, IndyTextEncoding_UTF8);
 end;
 
-class function TIndyHMAC<T>.HashValue(aKey, aValue: string): TIdBytes;
+class function THMAC<T>.HashValue(aKey, aValue: string): TIdBytes;
 var
-  indyHMAC: T;
+  hmac: T;
 begin
   if (not IdSSLOpenSSL.LoadOpenSSLLibrary) then
     Exit;
 
-  indyHMAC := T.Create;
+  hmac := T.Create;
   try
-    indyHMAC.Key := IdBytesOf(aKey);
-    Result := indyHMAC.HashValue(IdBytesOf(aValue));
+    hmac.Key := IdBytesOf(aKey);
+    Result := hmac.HashValue(IdBytesOf(aValue));
   finally
-    indyHMAC.Free;
+    hmac.Free;
   end;
 end;
 
-class function TIndyHMAC<T>.HashValueHexStr(aKey, aValue: string): string;
+class function THMAC<T>.HashValueHexStr(aKey, aValue: string): string;
 var
   value: Byte;
 begin
@@ -50,7 +50,7 @@ begin
     Result := Result + IntToHex(value, 2);
 end;
 
-class function TIndyHMAC<T>.HashValueBase64(aKey, aValue: string): string;
+class function THMAC<T>.HashValueBase64(aKey, aValue: string): string;
 var
   values: TIdBytes;
 begin

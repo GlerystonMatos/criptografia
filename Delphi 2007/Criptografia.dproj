@@ -30,8 +30,7 @@
     <DelphiCompile Include="Criptografia.dpr">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
-    <DCCReference Include="IndyHMACSHA1.pas" />
-    <DCCReference Include="IndyHMACSHA256.pas" />
-    <DCCReference Include="IndyMD5.pas" />
+    <DCCReference Include="HASH.pas" />
+    <DCCReference Include="HMAC.pas" />
   </ItemGroup>
 </Project>
